@@ -3,6 +3,10 @@
 	2019-02-05
 */
 
+//make leash a function.
+//add inventory? stack twigs, snacks for dog.
+//add situation with other people/ other dogs/animals.
+
 #include <stdio.h>
 
 int main() {
