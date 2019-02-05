@@ -13,10 +13,10 @@ int main() {
 	scanf_s("%d", &dog);
 	if (dog > 10) {
 		printf("Why do you have so many dogs?\n");
-		printf("Press any button to continue\n");
+		system("PAUSE");
 		main();
 	}
-
+	
 	if (dog == 0 || dog < 0) {
 		printf("You are out of dogs\n");
 		printf("Would you like to try again? (1 for YES, 0 for NO)\n");
