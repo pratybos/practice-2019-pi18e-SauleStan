@@ -1,23 +1,24 @@
 /*
-ANOTHER VERSION
+	susigrazink Stats info is tu funkciju :+ (event, catch, woods)
 */
 
 #include <stdio.h>
 
-typedef struct {
+struct Stats {
 	int dogs;
 	char area[10];
-}stats;
+};
 
 int leash();
-void player_stats(stats player);
-void woods(stats player);
-void street(stats player);
+void player_stats(struct Stats player);
+int woods(struct Stats player);
+void street(struct Stats player);
 void choice();
-void event();
+int event();
+int catch (struct Stats player);
 
 int main() {
-	stats player;
+	struct Stats player;
 	int c;
 	player.dogs = 1;
 	strcpy(player.area, "???");
@@ -45,18 +46,21 @@ int main() {
 	return 0;
 }
 
-void player_stats(stats player) {
+void player_stats(struct Stats player) {
 	printf("Dogs:%d\tArea:%s\n", player.dogs, player.area);
 
 }
-void woods(stats player) {
+int woods(struct Stats player) {
 	strcpy(player.area, "woods");
 	system("cls");
 	player_stats(player);
 	printf("you have entered area 'woods'\n");
-	event();
+	event(player);
+	system("PAUSE");
+	system("cls");
+	player_stats(player);
 }
-void street(stats player) {
+void street(struct Stats player) {
 	strcpy(player.area, "street");
 	system("cls");
 	player_stats(player);
@@ -65,7 +69,7 @@ void street(stats player) {
 void choice() {
 	printf("\nchoose an action:\n");
 }
-void event() {
+int event(struct Stats player) {
 	int e = rand() % 2;
 	switch (e) {
 	case 0:
@@ -79,10 +83,31 @@ void event() {
 		printf("2 - do nothing\n");
 		scanf_s("%d", &c);
 		if (c == 1) {
-			printf("\nThe dog slipped away!\n");
-		}
-		if (c == 0) {
+			catch(player);
+			system("PAUSE");
+			system("cls");
+			player_stats(player);
 			break;
 		}
+		if (c == 2) {
+			system("cls");
+			player_stats(player);
+			printf("The dog ran away\n");
+			break;
+		}
+	}
+}
+int catch (struct Stats player) {
+	int a = 0;//rand() % 2;
+	if (a == 1) {
+		system("cls");
+		printf("\nThe dog slipped away!\n");
+	}
+	else {
+		player.dogs++;
+		system("cls");
+		player_stats(player);
+		printf("\nYou got a new dog!\n");
+		return ;
 	}
 }
